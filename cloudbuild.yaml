@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    id: 'Install dependencies'
+    args: ['ci']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    id: 'Build'
+    args: ['run', 'build']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Deploy to App Engine'
+    args: ['app', 'deploy', '--quiet', 'app.yaml']
+
+timeout: '1200s'
